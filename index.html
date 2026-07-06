@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自然源溯日月时律 日夜精华安瓶 · 主播合作手册</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0e0b;--bg2:#161810;--bg3:#1f2114;
+  --green:#8a9a5b;--green-l:#b8c87a;--green-d:#5a6a35;
+  --amber:#c9a84c;--red:#c06060;--blue:#5a8aaa;--orange:#d68a4c;
+  --text:#e8e6dc;--mid:#b0ae9e;--dim:#6e6c5e;--white:#f4f2e8;
+  --div:rgba(138,154,91,0.18);--pad:18px;
+}
+body{background:var(--bg);font-family:-apple-system,"PingFang SC","Noto Sans SC",sans-serif;color:var(--text);font-size:15px;line-height:1.75;padding-bottom:80px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:99;background:var(--bg);border-bottom:1px solid var(--div);padding:0 var(--pad);height:48px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-size:12px;color:var(--green);letter-spacing:.08em}
+.nav-links{display:flex;list-style:none;overflow-x:auto;scrollbar-width:none;gap:0}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-size:11px;color:var(--dim);text-decoration:none;padding:6px 10px;white-space:nowrap}
+.nav-links a:hover{color:var(--green)}
+#prog{position:fixed;top:48px;left:0;height:2px;background:var(--green);width:0;z-index:98}
+
+/* HERO */
+.hero{padding:44px var(--pad) 36px;border-bottom:1px solid var(--div)}
+.eyebrow{font-size:11px;letter-spacing:.22em;color:var(--green);text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:26px;font-weight:700;color:var(--white);line-height:1.25;margin:0 0 8px}
+.hero h1 em{color:var(--green-l);font-style:normal}
+.hero-sub{font-size:13px;color:var(--dim);margin-bottom:22px}
+.rule{width:28px;height:2px;background:var(--green);margin-bottom:20px}
+
+/* 规格条 */
+.pack-row{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.pack-pill{flex:1 1 130px;background:var(--bg2);border:1px solid var(--div);border-radius:10px;padding:11px 13px;text-align:center}
+.pack-pill .pl{font-size:10px;color:var(--dim);margin-bottom:3px}
+.pack-pill .pv{font-size:14px;font-weight:700;color:var(--white)}
+.pack-pill.day .pv{color:var(--orange)}
+.pack-pill.night .pv{color:var(--blue)}
+
+/* 30秒结论卡 */
+.verdict{background:rgba(138,154,91,.08);border:1px solid rgba(138,154,91,.25);border-radius:14px;padding:20px 18px;margin-bottom:20px}
+.verdict-eye{font-size:10px;letter-spacing:.16em;color:var(--green);text-transform:uppercase;margin-bottom:12px}
+.verdict-items{display:flex;flex-direction:column;gap:10px}
+.vi{display:flex;gap:12px;align-items:flex-start}
+.vi-num{font-size:20px;font-weight:700;color:var(--green);opacity:.5;line-height:1;flex-shrink:0;min-width:22px}
+.vi-body{flex:1}
+.vi-q{font-size:13px;color:var(--dim);margin-bottom:3px}
+.vi-a{font-size:14px;color:var(--white);font-weight:500;line-height:1.5}
+.vi-a em{color:var(--green-l);font-style:normal}
+
+/* SECTION */
+.sec{padding:32px var(--pad) 0;border-top:1px solid var(--div)}
+.sec-eye{font-size:11px;letter-spacing:.22em;color:var(--green);text-transform:uppercase;margin-bottom:8px}
+.sec-title{font-size:21px;font-weight:700;color:var(--white);line-height:1.3;margin:0 0 6px}
+.sec-hint{font-size:12px;color:var(--dim);margin-bottom:20px}
+.sec-end{height:32px}
+
+/* 日夜对比条（复用vs组件） */
+.vs-rows{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.vr{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.vr-cell{background:var(--bg2);border-radius:9px;padding:12px 13px}
+.vr-cell.day-cell{background:rgba(214,138,76,.09);border:1px solid rgba(214,138,76,.25)}
+.vr-cell.night-cell{background:rgba(90,138,170,.09);border:1px solid rgba(90,138,170,.25)}
+.vr-lbl{font-size:10px;color:var(--dim);margin-bottom:4px;letter-spacing:.04em}
+.vr-val{font-size:13px;color:var(--white);font-weight:500;line-height:1.4}
+.vr-note{font-size:11px;color:var(--dim);margin-top:3px;line-height:1.5}
+.badge{font-size:10px;padding:1px 6px;border-radius:3px;font-weight:600;margin-left:4px;vertical-align:middle}
+.b-day{background:var(--orange);color:#fff}
+.b-night{background:var(--blue);color:#fff}
+.b-gap{background:rgba(201,168,76,.3);color:var(--amber)}
+
+/* 适合/不适合 */
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.fit-box{background:var(--bg2);border-radius:10px;padding:14px}
+.fit-label{font-size:10px;font-weight:700;letter-spacing:.1em;margin-bottom:10px}
+.fit-label.yes{color:var(--green-l)}
+.fit-label.no{color:#e08080}
+.fit-items{display:flex;flex-direction:column;gap:7px}
+.fit-item{font-size:12px;color:var(--mid);display:flex;gap:7px;line-height:1.5}
+.fit-icon{flex-shrink:0;margin-top:1px}
+.fit-item strong{color:var(--white)}
+.fit-item .sub{color:var(--dim);font-size:11px}
+.fit-note{font-size:11px;color:var(--amber);padding:9px 12px;background:rgba(201,168,76,.06);border-radius:8px;line-height:1.6;margin-top:6px}
+
+/* 弹幕对应表 */
+.barrage-table{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.bt-row{background:var(--bg2);border-radius:10px;padding:14px}
+.bt-trigger{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.bt-tag{font-size:11px;color:var(--dim);background:var(--bg3);border-radius:4px;padding:2px 8px}
+.bt-arrow{color:var(--green-d);font-size:13px}
+.bt-result{font-size:12px;font-weight:600}
+.bt-result.can{color:var(--green-l)}
+.bt-result.cant{color:#e08080}
+.bt-script{font-size:13px;color:var(--mid);line-height:1.75;border-left:2px solid var(--green-d);padding-left:10px}
+.bt-script strong{color:var(--white)}
+.bt-script .tip{font-size:11px;color:var(--dim);display:block;margin-top:4px}
+
+/* 成分弹药库 */
+.ammo-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.ammo{background:var(--bg2);border-radius:12px;overflow:hidden}
+.ammo-h{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
+.ammo-h:hover{background:var(--bg3)}
+.ammo-icon{font-size:18px;flex-shrink:0}
+.ammo-meta{flex:1}
+.ammo-name{font-size:14px;color:var(--white);font-weight:500}
+.ammo-sub{font-size:11px;color:var(--dim);margin-top:2px}
+.ammo-tog{color:var(--green);font-size:16px;flex-shrink:0;transition:transform .3s}
+.ammo-tog.open{transform:rotate(45deg)}
+.ammo-b{display:none;padding:0 16px 16px}
+.ammo-b.open{display:block}
+.hook-box{background:rgba(138,154,91,.07);border:1px solid rgba(138,154,91,.15);border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.hook-lbl{font-size:10px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.hook-txt{font-size:13px;color:var(--text);line-height:1.85}
+.hook-txt strong{color:var(--white)}
+.defend-box{background:var(--bg3);border-radius:7px;padding:11px 13px;margin-top:8px}
+.defend-lbl{font-size:10px;color:var(--amber);letter-spacing:.08em;margin-bottom:5px}
+.defend-txt{font-size:12px;color:var(--mid);line-height:1.7}
+.defend-txt strong{color:var(--white)}
+
+/* 退货风险 */
+.risk-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.risk{background:var(--bg2);border-radius:10px;padding:14px}
+.risk-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.risk-lv{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px}
+.rv-h{background:rgba(192,96,96,.2);color:#e08080}
+.rv-m{background:rgba(201,168,76,.15);color:var(--amber)}
+.rv-l{background:rgba(138,154,91,.2);color:var(--green-l)}
+.risk-title{font-size:13px;color:var(--white);font-weight:500}
+.risk-desc{font-size:12px;color:var(--mid);line-height:1.65;margin-bottom:7px}
+.risk-fix{font-size:12px;color:var(--green-l);border-left:2px solid var(--green-d);padding-left:9px;line-height:1.6}
+
+/* 长期合作 */
+.lp-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.lp{background:var(--bg2);border-radius:10px;padding:14px 16px;display:flex;gap:12px}
+.lp-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.lp-title{font-size:13px;color:var(--white);font-weight:500;margin-bottom:4px}
+.lp-desc{font-size:12px;color:var(--mid);line-height:1.65}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.faq-item{background:var(--bg2);border-radius:10px;overflow:hidden}
+.faq-q{padding:13px 15px;font-size:13px;color:var(--white);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.faq-q:hover{background:var(--bg3)}
+.faq-i{color:var(--green);font-size:15px;flex-shrink:0;transition:transform .3s}
+.faq-i.open{transform:rotate(45deg)}
+.faq-a{display:none;padding:0 15px 12px;font-size:12px;color:var(--mid);line-height:1.8;border-top:1px solid var(--bg3)}
+.faq-a.open{display:block;padding-top:10px}
+.faq-a strong{color:var(--white)}
+
+/* CTA */
+.cta{background:rgba(138,154,91,.08);border:1px solid rgba(138,154,91,.25);border-radius:14px;padding:24px 18px;text-align:center;margin-bottom:8px}
+.cta-title{font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
+.cta-sub{font-size:13px;color:var(--mid);line-height:1.8;margin-bottom:14px}
+.cta-contact{font-size:14px;color:var(--green-l);font-weight:500}
+
+footer{padding:24px var(--pad);text-align:center;border-top:1px solid var(--div)}
+.fb{font-size:13px;color:var(--green);letter-spacing:.18em;margin-bottom:4px}
+.fn2{font-size:11px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav>
+  <div class="nav-brand">自然源溯日月时律 · 主播合作手册</div>
+  <ul class="nav-links">
+    <li><a href="#why">为什么带</a></li>
+    <li><a href="#who">适合谁</a></li>
+    <li><a href="#how">怎么带</a></li>
+    <li><a href="#risk">退货风险</a></li>
+    <li><a href="#longterm">长期合作</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">主播合作手册 · 成分党版 · 内容筹备中</div>
+  <h1>自然源溯<br><em>日月时律</em> 日夜精华安瓶</h1>
+  <div class="hero-sub">日间焕活精华液 + 夜间密集精华液 · 日夜分工，跟着皮肤节律走</div>
+  <div class="rule"></div>
+
+  <div class="pack-row">
+    <div class="pack-pill"><div class="pl">规格</div><div class="pv">1盒30支</div></div>
+    <div class="pack-pill day"><div class="pl">日用 · 橙色</div><div class="pv">15支</div></div>
+    <div class="pack-pill night"><div class="pl">夜用 · 蓝色</div><div class="pv">15支</div></div>
+    <div class="pack-pill"><div class="pl">单支容量</div><div class="pv">1.5ml</div></div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-eye">读完这三条，再决定要不要继续</div>
+    <div class="verdict-items">
+      <div class="vi">
+        <div class="vi-num">1</div>
+        <div class="vi-body">
+          <div class="vi-q">这是个什么产品？</div>
+          <div class="vi-a">早晚各一支的安瓶精华，<em>橙色白天用，蓝色晚上用</em>，一盒装够半个月早晚精华护肤，不用自己算today用哪支。</div>
+        </div>
+      </div>
+      <div class="vi">
+        <div class="vi-num">2</div>
+        <div class="vi-body">
+          <div class="vi-q">成分打不打得住成分党？</div>
+          <div class="vi-a"><em>打得住。</em> 夜用十种以上活性肽联用，日用凝血酸+四氢姜黄素+山竹果皮三路抗氧提亮，配方密度不低。</div>
+        </div>
+      </div>
+      <div class="vi">
+        <div class="vi-num">3</div>
+        <div class="vi-body">
+          <div class="vi-q">价格和检测报告呢？</div>
+          <div class="vi-a">还在确认中 <span class="badge b-gap">筹备期</span>。这份手册先把成分逻辑和使用方法讲透，定下来第一时间更新。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Part 1：为什么带这款 ─── -->
+<div class="sec" id="why">
+  <div class="sec-eye">Part 01 · 为什么带这款</div>
+  <p class="sec-title">日间 vs 夜间<br>配方是怎么分工的</p>
+  <p class="sec-hint">"日月时律"不是起个好听的名字，两支精华的成分是真的按皮肤日夜节律分开设计的</p>
+
+  <div class="vs-rows">
+    <div class="vr">
+      <div class="vr-cell day-cell">
+        <div class="vr-lbl">☀ 日间焕活精华液 · 核心诉求</div>
+        <div class="vr-val">抗氧化 + 提亮 <span class="badge b-day">白天防御</span></div>
+        <div class="vr-note">凝血酸、四氢姜黄素、山竹果皮提取物、维C衍生物四路抗氧化提亮</div>
+      </div>
+      <div class="vr-cell night-cell">
+        <div class="vr-lbl">🌙 夜间密集精华液 · 核心诉求</div>
+        <div class="vr-val">密集修护 + 抗初老 <span class="badge b-night">夜间修复</span></div>
+        <div class="vr-note">十种以上活性肽联用，配合胶原、多糖，主打睡眠时段的深度修护</div>
+      </div>
+    </div>
+    <div class="vr">
+      <div class="vr-cell day-cell">
+        <div class="vr-lbl">☀ 抗氧化/提亮体系</div>
+        <div class="vr-val">凝血酸 + 四氢姜黄素 + 山竹果皮提取物</div>
+        <div class="vr-note">凝血酸是成分党熟悉的经典提亮成分，四氢姜黄素是姜黄素的稳定衍生物，山竹果皮和LYMO系列的倒捻子素同源</div>
+      </div>
+      <div class="vr-cell night-cell">
+        <div class="vr-lbl">🌙 活性肽矩阵</div>
+        <div class="vr-val">十种以上肽 + 三肽-1铜（GHK-Cu）+ 棕榈酰五肽-4（经典抗皱肽）</div>
+        <div class="vr-note">GHK-Cu是护肤界研究最久的铜肽之一，棕榈酰五肽-4是行业内最经典的胶原刺激肽，两个都是有据可查的成分</div>
+      </div>
+    </div>
+    <div class="vr">
+      <div class="vr-cell day-cell">
+        <div class="vr-lbl">☀ 质地设计</div>
+        <div class="vr-val">角鲨烷 + 霍霍巴籽油 + 白池花籽油</div>
+        <div class="vr-note">轻质油相为主，好吸收不拔干，方便叠加防晒和底妆</div>
+      </div>
+      <div class="vr-cell night-cell">
+        <div class="vr-lbl">🌙 修护+舒缓体系</div>
+        <div class="vr-val">泛醇 + 尿囊素 + 四氢甲基嘧啶羧酸（依克多因）</div>
+        <div class="vr-note">依克多因和油霜是同一个成分逻辑，"外部抗应激"贯穿自然源溯多个产品线</div>
+      </div>
+    </div>
+    <div class="vr">
+      <div class="vr-cell day-cell">
+        <div class="vr-lbl">☀ 包装区分</div>
+        <div class="vr-val">橙色瓶身 · 15支</div>
+        <div class="vr-note">早上洁面护肤后使用，叠加防晒</div>
+      </div>
+      <div class="vr-cell night-cell">
+        <div class="vr-lbl">🌙 包装区分</div>
+        <div class="vr-val">蓝色瓶身 · 15支</div>
+        <div class="vr-note">晚上洁面后使用，不用叠加防晒</div>
+      </div>
+    </div>
+  </div>
+  <div class="fit-note">💡 两支精华都含<strong>甘草酸二钾</strong>——和光甘草定面膜是同一个"甘草家族"逻辑，抗炎舒缓打底贯穿全系列，这是可以串起来讲的品牌一致性。</div>
+</div>
+
+<!-- ─── Part 2：适合谁 ─── -->
+<div class="sec" id="who">
+  <div class="sec-eye">Part 02 · 适合谁带</div>
+  <p class="sec-title">说清楚<br>比卖出去更重要</p>
+  <p class="sec-hint">日夜安瓶是需要"配合使用"的产品，讲清楚使用逻辑比讲成分更重要</p>
+
+  <div class="fit-grid">
+    <div class="fit-box">
+      <div class="fit-label yes">✓ 这款是为她们做的</div>
+      <div class="fit-items">
+        <div class="fit-item"><span class="fit-icon">🧬</span><div><strong>成分党/肽类爱好者</strong><div class="sub">十种以上活性肽，GHK-Cu、棕榈酰五肽-4都是经典成分</div></div></div>
+        <div class="fit-item"><span class="fit-icon">☀</span><div><strong>想要早晚护肤仪式感的姐妹</strong><div class="sub">橙蓝分装自带打卡属性，容易做内容</div></div></div>
+        <div class="fit-item"><span class="fit-icon">🌙</span><div><strong>关注抗初老/熬夜修护的姐妹</strong><div class="sub">夜用主打密集修护，睡眠时段发挥效果</div></div></div>
+        <div class="fit-item"><span class="fit-icon">✨</span><div><strong>想要日常提亮的姐妹</strong><div class="sub">凝血酸+四氢姜黄素+山竹果皮日间三路抗氧</div></div></div>
+      </div>
+    </div>
+    <div class="fit-box">
+      <div class="fit-label no">✗ 主动说不适合/不要这样带</div>
+      <div class="fit-items">
+        <div class="fit-item"><span class="fit-icon">🚫</span><div><strong>图省事想"一步到位"的姐妹</strong><div class="sub">日夜两支需要配合使用，操作步骤比单瓶精华多</div></div></div>
+        <div class="fit-item"><span class="fit-icon">🚫</span><div><strong>追求厚重滋润感的极干皮</strong><div class="sub">质地偏水感安瓶，极干皮可能需要叠加面霜锁水</div></div></div>
+        <div class="fit-item"><span class="fit-icon">🚫</span><div><strong>精油/香精敏感体质直接全脸用</strong><div class="sub">夜用含薰衣草油、白花春黄菊花油；日用含香精，建议先测试</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="fit-note">💡 话术：「早上一支橙色，晚上一支蓝色，跟着皮肤自己的节律走——白天防御，晚上修复，这是这套产品的逻辑，不是随便分个颜色。」</div>
+  <div class="sec-end"></div>
+</div>
+
+<!-- ─── Part 3：怎么带 ─── -->
+<div class="sec" id="how">
+  <div class="sec-eye">Part 03 · 怎么带</div>
+  <p class="sec-title">弹幕出现什么<br>直接用哪句话接</p>
+  <p class="sec-hint">不需要背稿，看弹幕找对应场景</p>
+
+  <div class="barrage-table">
+
+    <div class="bt-row">
+      <div class="bt-trigger">
+        <div class="bt-tag">「抗初老」「细纹」「紧致吗」</div>
+        <div class="bt-arrow">→</div>
+        <div class="bt-result can">✓ 接，讲夜用</div>
+      </div>
+      <div class="bt-script">
+        「抗初老看夜用这支——<strong>十种以上活性肽联用</strong>，里面的三肽-1铜（GHK-Cu）是护肤界研究最久的铜肽之一，棕榈酰五肽-4是行业内最经典的胶原刺激肽，晚上睡觉的时候正好是皮肤修复的黄金时间。」
+        <span class="tip">→ 追问"这么多肽是不是堆料"：肽类各自分工不同，有的管紧致、有的管修复、有的管舒缓，是协同不是堆砌。</span>
+      </div>
+    </div>
+
+    <div class="bt-row">
+      <div class="bt-trigger">
+        <div class="bt-tag">「提亮」「暗沉」「维C」</div>
+        <div class="bt-arrow">→</div>
+        <div class="bt-result can">✓ 接，讲日用</div>
+      </div>
+      <div class="bt-script">
+        「提亮看白天这支——<strong>凝血酸+四氢姜黄素+山竹果皮提取物</strong>三路一起上，凝血酸是成分党很熟悉的经典提亮成分，四氢姜黄素是姜黄素的稳定衍生物，山竹果皮和LYMO系列的倒捻子素是同一个抗氧化家族。」
+        <span class="tip">→ 追问"能美白吗"：这几个成分方向是抗氧化+提亮，具体功效宣称以备案为准，不要自己加码承诺美白。</span>
+      </div>
+    </div>
+
+    <div class="bt-row">
+      <div class="bt-trigger">
+        <div class="bt-tag">「早晚都要用吗」「能只用一支吗」</div>
+        <div class="bt-arrow">→</div>
+        <div class="bt-result can">✓ 接，讲使用逻辑</div>
+      </div>
+      <div class="bt-script">
+        「橙色白天用，蓝色晚上用，<strong>一盒30支正好半个月的量</strong>。也可以只用一支——想抗初老修护就晚上用蓝色，想提亮就白天用橙色，但日夜配合着用是这套产品设计的完整逻辑。」
+        <span class="tip">→ 别把"可以单用"讲成"单用效果一样好"，配合使用才是产品设计的本意。</span>
+      </div>
+    </div>
+
+    <div class="bt-row">
+      <div class="bt-trigger">
+        <div class="bt-tag">「敏感肌能用吗」「会不会过敏」</div>
+        <div class="bt-arrow">→</div>
+        <div class="bt-result cant">✗ 谨慎回答，讲清楚成分</div>
+      </div>
+      <div class="bt-script">
+        「夜用含薰衣草油、白花春黄菊花油，日用含香精，<strong>敏感肌或者精油过敏体质建议先做局部测试</strong>，确认没问题再全脸用。这套的安全性和功效检测报告还在推进中，我不夸大讲，测试完成会第一时间更新。」
+        <span class="tip">→ 这款目前没有像面膜那样的第三方检测报告，别现编数据，坦诚讲"检测中"比瞎编更让成分党信任。</span>
+      </div>
+    </div>
+
+    <div class="bt-row">
+      <div class="bt-trigger">
+        <div class="bt-tag">「多少钱」「什么时候上」</div>
+        <div class="bt-arrow">→</div>
+        <div class="bt-result cant">✗ 如实说未定</div>
+      </div>
+      <div class="bt-script">
+        「<strong>价格和上架时间还在最终确认</strong>，今天先带大家认识一下这套产品的设计逻辑和成分，定档之后会第一时间通知。」
+        <span class="tip">→ 别现场编价格，价格没定的产品讲太细容易埋雷。</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 成分弹药库 -->
+  <p style="font-size:12px;color:var(--dim);margin-bottom:10px">被追问时用 · 展开看详细话术和粉丝问题应对</p>
+  <div class="ammo-list">
+
+    <div class="ammo">
+      <div class="ammo-h" onclick="toggleAmmo(this)">
+        <div class="ammo-icon">🌙</div>
+        <div class="ammo-meta">
+          <div class="ammo-name">夜用十肽矩阵 · GHK-Cu + 经典胶原刺激肽</div>
+          <div class="ammo-sub">十种以上活性肽联用 · 成分党最爱开箱的一支</div>
+        </div>
+        <div class="ammo-tog">+</div>
+      </div>
+      <div class="ammo-b">
+        <div class="hook-box">
+          <div class="hook-lbl">直播间钩子</div>
+          <div class="hook-txt">「夜用这支成分表拉出来，<strong>十种以上活性肽</strong>——三肽-1铜也就是GHK-Cu，是护肤界研究了几十年的铜肽，促进胶原和弹性蛋白合成有大量文献；棕榈酰五肽-4是行业里最经典的胶原刺激肽之一，很多大牌抗老精华的核心就是它。」</div>
+        </div>
+        <div class="defend-box">
+          <div class="defend-lbl">粉丝追问：这么多肽会不会用不完/浪费？</div>
+          <div class="defend-txt">「肽类是微量起效的成分，不是加得越多越浪费，配方里这么多种是覆盖不同修护方向——紧致、屏障、舒缓分工不同，晚上睡觉这段时间正好给皮肤做完整的修复工作。」</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ammo">
+      <div class="ammo-h" onclick="toggleAmmo(this)">
+        <div class="ammo-icon">☀</div>
+        <div class="ammo-meta">
+          <div class="ammo-name">日用三路抗氧化 · 凝血酸+四氢姜黄素+山竹果皮</div>
+          <div class="ammo-sub">白天焕活提亮 · 和LYMO系列成分同源</div>
+        </div>
+        <div class="ammo-tog">+</div>
+      </div>
+      <div class="ammo-b">
+        <div class="hook-box">
+          <div class="hook-lbl">直播间钩子</div>
+          <div class="hook-txt">「白天这支主打抗氧化提亮——<strong>凝血酸</strong>是成分党很熟悉的经典提亮成分，<strong>四氢姜黄素</strong>是姜黄素家族里更稳定的衍生物，<strong>山竹果皮提取物</strong>和黎沫系列松茸悬油精华里的倒捻子素是同一个抗氧化家族，自然源溯和LYMO虽然是两个牌子，但成分逻辑是相通的。」</div>
+        </div>
+        <div class="defend-box">
+          <div class="defend-lbl">粉丝追问：凝血酸不是止血的吗，护肤品里加安全吗？</div>
+          <div class="defend-txt">「凝血酸（传明酸）外用在护肤品里是常见的提亮成分，和医用止血是两个使用场景和浓度，护肤品里的添加量是按化妆品法规来的，这个成分在成分党圈子里认知度很高。」</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ammo">
+      <div class="ammo-h" onclick="toggleAmmo(this)">
+        <div class="ammo-icon">🧪</div>
+        <div class="ammo-meta">
+          <div class="ammo-name">甘草酸二钾 · 贯穿自然源溯全系列</div>
+          <div class="ammo-sub">品牌一致性话题 · 和光甘草定面膜串着讲</div>
+        </div>
+        <div class="ammo-tog">+</div>
+      </div>
+      <div class="ammo-b">
+        <div class="hook-box">
+          <div class="hook-lbl">直播间钩子</div>
+          <div class="hook-txt">「甘草酸二钾这个成分，日用夜用两支都有，<strong>自然源溯的光甘草定面膜里也有甘草相关成分</strong>，甘草这条抗炎舒缓的线是贯穿整个品牌产品线的，不是单一产品的偶然添加。」</div>
+        </div>
+        <div class="defend-box">
+          <div class="defend-lbl">粉丝追问：甘草酸二钾和光甘草定是一个东西吗？</div>
+          <div class="defend-txt">「不是同一个成分，但都来自甘草家族——甘草酸二钾偏抗炎舒缓，光甘草定偏提亮。自然源溯在好几个产品里都用了甘草相关成分，这是品牌一贯的配方思路。」</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="sec-end"></div>
+</div>
+
+<!-- ─── Part 4：退货风险 ─── -->
+<div class="sec" id="risk">
+  <div class="sec-eye">Part 04 · 退货风险</div>
+  <p class="sec-title">这几点<br>提前说清楚</p>
+  <p class="sec-hint">这款还在筹备期，风险点更要提前说清楚</p>
+
+  <div class="risk-list">
+    <div class="risk">
+      <div class="risk-head"><div class="risk-lv rv-h">高风险</div><div class="risk-title">编造价格/检测数据</div></div>
+      <div class="risk-desc">价格和第三方检测报告目前都没有确定，现场编数字或编报告，一旦对不上会砸口碑。</div>
+      <div class="risk-fix">「价格和检测报告都在推进中，我现在讲的是成分逻辑，不是检测结果」——坦诚比编造更安全。</div>
+    </div>
+    <div class="risk">
+      <div class="risk-head"><div class="risk-lv rv-m">中风险</div><div class="risk-title">精油/香精过敏体质直接使用</div></div>
+      <div class="risk-desc">夜用含薰衣草油、白花春黄菊花油，日用含香精，过敏体质直接全脸用可能刺激。</div>
+      <div class="risk-fix">「首次用建议先局部测试」——提前说，减少过敏退货。</div>
+    </div>
+    <div class="risk">
+      <div class="risk-head"><div class="risk-lv rv-m">中风险</div><div class="risk-title">期待"一支顶两支"的效果</div></div>
+      <div class="risk-desc">日夜精华是配合使用设计的，只用一支体验会打折，粉丝可能觉得"效果不够"。</div>
+      <div class="risk-fix">「配合使用是这套产品设计的本意，只用一支也可以，但完整体验建议日夜都用」——预期讲清楚。</div>
+    </div>
+    <div class="risk">
+      <div class="risk-head"><div class="risk-lv rv-l">低风险</div><div class="risk-title">被问具体肽的功效数据</div></div>
+      <div class="risk-desc">成分党可能追问某个肽的具体临床数据，这款目前没有产品级的检测报告。</div>
+      <div class="risk-fix">「这几个肽在行业里研究比较久，文献可以自己查，我们产品本身的检测报告还在推进」——不要把行业公开文献讲成"我们自己测的"。</div>
+    </div>
+  </div>
+  <div class="sec-end"></div>
+</div>
+
+<!-- ─── Part 5：长期合作 ─── -->
+<div class="sec" id="longterm">
+  <div class="sec-eye">Part 05 · 长期合作</div>
+  <p class="sec-title">为什么值得<br>长期绑定</p>
+
+  <div class="lp-list">
+    <div class="lp">
+      <div class="lp-icon">🧬</div>
+      <div>
+        <div class="lp-title">成分密度高，内容素材丰富</div>
+        <div class="lp-desc">日夜两支合计几十种活性成分，肽类、抗氧化、舒缓修护都能单独拎出来做一期内容，不愁没话讲。</div>
+      </div>
+    </div>
+    <div class="lp">
+      <div class="lp-icon">🔗</div>
+      <div>
+        <div class="lp-title">和品牌其他产品的成分逻辑相通</div>
+        <div class="lp-desc">甘草家族贯穿面膜和日月精华，山竹果皮/倒捻子素和LYMO系列同源，方便做"自然源溯成分体系"这类系列内容。</div>
+      </div>
+    </div>
+    <div class="lp">
+      <div class="lp-icon">🤝</div>
+      <div>
+        <div class="lp-title">实时成分技术支持</div>
+        <div class="lp-desc">成分追问是成分党直播间的日常风险，遇到边缘问题可以直接联系研发确认，不靠现场发挥。</div>
+      </div>
+    </div>
+    <div class="lp">
+      <div class="lp-icon">📦</div>
+      <div>
+        <div class="lp-title">自然源溯产品线持续扩充</div>
+        <div class="lp-desc">油霜、面膜已经上线，日月精华筹备中，后续还会有更多产品，早期合作的主播更容易建立"自然源溯专属主播"的人设。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>现在能不能开始预告/种草？</span><span class="faq-i">+</span></div>
+      <div class="faq-a">可以做成分种草内容，但<strong>不建议报价格和上架时间</strong>，这两项还没定，先讲清楚"日夜分工"这个产品逻辑和成分亮点，等信息确认后再做正式带货预热。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>这款和市面上的双胶囊/日夜精华有什么不同？</span><span class="faq-i">+</span></div>
+      <div class="faq-a">不点名对比，讲自己的配方密度：<strong>夜用十种以上活性肽，日用三路抗氧化</strong>，成分表本身就是最直接的说服力，不需要靠贬低同类产品。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>没有检测报告，成分党会不会不买账？</span><span class="faq-i">+</span></div>
+      <div class="faq-a">坦诚讲清楚现状：「产品级检测报告还在推进，但配方里的肽类、凝血酸这些成分本身在行业里都有公开研究，讲的时候用行业共识，不冒充是自己测的数据」——这样的坦诚反而是成分党最认可的态度。</div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="cta-title">价格和检测数据定下来后，第一时间更新</div>
+    <div class="cta-sub">先熟悉成分逻辑和使用方法<br>不编数据、不编价格，是这款筹备期最重要的原则</div>
+    <div class="cta-contact">联系品牌方 → 确认上架信息 + 样品试用</div>
+  </div>
+  <div class="sec-end"></div>
+</div>
+
+<footer>
+  <div class="fb">自然源溯 · 日月时律</div>
+  <div class="fn2">成分党主播合作手册 · 筹备期版本</div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  document.getElementById('prog').style.width=p+'%';
+});
+function toggleAmmo(h){
+  const b=h.nextElementSibling,t=h.querySelector('.ammo-tog'),o=b.classList.contains('open');
+  document.querySelectorAll('.ammo-b').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.ammo-tog').forEach(x=>x.classList.remove('open'));
+  if(!o){b.classList.add('open');t.classList.add('open');}
+}
+function toggleFaq(q){
+  const a=q.nextElementSibling,i=q.querySelector('.faq-i'),o=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.faq-i').forEach(x=>x.classList.remove('open'));
+  if(!o){a.classList.add('open');i.classList.add('open');}
+}
+</script>
+</body>
+</html>
